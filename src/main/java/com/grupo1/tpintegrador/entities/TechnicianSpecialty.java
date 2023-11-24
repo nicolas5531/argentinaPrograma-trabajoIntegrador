@@ -8,12 +8,9 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Setter
 @Getter
-@Table(name = "technician")
-public class Technician {
+@Table(name = "technicianSpecialty")
+public class TechnicianSpecialty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nombre;
-    private String apellido;
-
 }
