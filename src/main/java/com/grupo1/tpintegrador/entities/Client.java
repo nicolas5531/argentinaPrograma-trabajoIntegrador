@@ -1,12 +1,7 @@
 package com.grupo1.tpintegrador.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.*;
 
 import java.util.List;
 
@@ -16,12 +11,12 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
-@Table(name = "client")
+@Table(name = "tb_client")
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_client")
-    private Integer id;
+    @Column(name = "cliente_id")
+    private Integer clienteId;
 
     @Column(name = "cuit")
     private Integer cuit;
@@ -38,7 +33,9 @@ public class Client {
     @Column(name = "apellido")
     private String apellido;
 
-    @OneToMany(mappedBy = "client")
-    private List<Incident> incidentList;
+    @OneToMany(mappedBy = "clientId", cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<Incident> incidents;
 }
 

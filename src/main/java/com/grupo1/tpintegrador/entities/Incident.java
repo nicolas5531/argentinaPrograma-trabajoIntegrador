@@ -1,10 +1,10 @@
 package com.grupo1.tpintegrador.entities;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.http.converter.json.GsonBuilderUtils;
+import lombok.ToString;
 
 
 import java.time.LocalDateTime;
@@ -13,12 +13,12 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
-@Table(name = "incident")
+@Table(name = "tb_incident")
 public class Incident {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_incident")
-    private Integer id;
+    @Column(name = "incident_id")
+    private Integer incidentId;
 
     @Column(name = "fechaIngeso")
     private LocalDateTime fechaIngreso;
@@ -36,17 +36,19 @@ public class Incident {
     private int hsEstimadasTotales;
 
     @ManyToOne
-    @JoinColumn(name = "id_client")  // Cambiado a "id_client" ya que parece que tu columna se llama así
-    private Client client;
+    @JoinColumn(name = "client_id")
+    private Client clientId;
 
     @ManyToOne
-    @JoinColumn(name = "technician_id")  // Cambiado a "technician_id" ya que parece que tu columna se llama así
-    private Technician technician;
+    @JoinColumn(name = "technician_id")
+    private Technician technicianId;
 
-    @OneToMany(mappedBy = "incident")  // Corregido aquí
-    private List<Issue> issueList;
+    @OneToMany(mappedBy = "incidentId", cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<Issue> issues;
 
     @OneToOne
-    @JoinColumn(name = "id_service")  // Cambiado a "id_service" ya que parece que tu columna se llama así
+    @JoinColumn(name = "serviceId")  // Cambiado a "id_service" ya que parece que tu columna se llama así
     private Service service;
 }

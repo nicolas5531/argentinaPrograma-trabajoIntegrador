@@ -8,20 +8,18 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Setter
 @Getter
-@Table(name = "technicianSpecialty")
+@Table(name = "tb_technicianSpecialty")
 public class TechnicianSpecialty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "technicianSpecialty_id")
+    private Integer technicianSpecialtyId;
 
     @ManyToOne
-    @JoinColumn(name = "technician_id", referencedColumnName = "technician_id")
-    private Technician technician;
+    @JoinColumn(name = "technician_id")
+    private Technician technicianId;
 
     @ManyToOne
-    @JoinColumn(name = "specialty_id", referencedColumnName = "id")
-    private Specialty specialty;
+    @JoinColumn(name = "specialty_id")
+    private Specialty specialtyId;
 }
-
-

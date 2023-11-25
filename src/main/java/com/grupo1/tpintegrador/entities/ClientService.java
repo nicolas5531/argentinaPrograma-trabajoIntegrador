@@ -8,9 +8,9 @@ import lombok.Setter;
 @Setter
 @Getter
 @Table(name = "clientService")
-public class ClienService {
+public class ClientService {
     @Id
-    @Column(name = "id")
+    @Column(name = "clientService_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer clientServiceId;
 }

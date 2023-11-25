@@ -10,12 +10,12 @@ import java.time.LocalDateTime;
 @Entity
 @Setter
 @Getter
-@Table(name = "issue")
+@Table(name = "tb_issue")
 public class Issue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "issue_id")
+    private Integer issueId;
 
     @Column(name = "fechaIngreso")
     private LocalDateTime fechaIngreso;
@@ -33,8 +33,8 @@ public class Issue {
     private int hsEstimadasTotales;
 
     @ManyToOne
-    @JoinColumn(name = "incident_id", referencedColumnName = "id")
-    private Incident incident;
+    @JoinColumn(name = "incident_id")
+    private Incident incidentId;
 
 
 }
