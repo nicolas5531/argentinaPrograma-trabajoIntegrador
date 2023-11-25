@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.List;
+
 @Entity
 @Setter
 @Getter
@@ -12,7 +14,16 @@ import org.hibernate.annotations.GenericGenerator;
 public class Specialty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
+
+    @Column(name = "nombre")
     private String nombre;
+
+    @Column(name = "descripcion")
     private String descripcion;
+
+    @OneToMany(mappedBy = "specialty")
+    private List<TechnicianSpecialty> technicianSpecialtyList;
 }
+

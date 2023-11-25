@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.List;
+
 @Entity
 @Setter
 @Getter
@@ -12,8 +14,18 @@ import org.hibernate.annotations.GenericGenerator;
 public class Technician {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "technician_id")
     private Integer id;
+
+    @Column(name = "nombre")
     private String nombre;
+
+    @Column(name = "apellido")
     private String apellido;
 
+    @OneToMany(mappedBy = "technician")
+    private List<Incident> listadoIncidentes;
+
+    @OneToMany(mappedBy = "technician")
+    private List<TechnicianSpecialty> tecnicoEspecialidades;
 }

@@ -14,12 +14,27 @@ import java.time.LocalDateTime;
 public class Issue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GenericGenerator(name = "UUID", type = org.hibernate.id.uuid.UuidGenerator.class)
+    @Column(name = "id")
     private Integer id;
+
+    @Column(name = "fechaIngreso")
     private LocalDateTime fechaIngreso;
+
+    @Column(name = "fechaPosibleResolucion")
     private LocalDateTime fechaPosibleResolucion;
+
+    @Column(name = "fechaResolucion")
     private LocalDateTime fechaResolucion;
-    //private EstadoEnum estado;
+
+    @Column(name = "descripcion")
     private String descripcion;
+
+    @Column(name = "hsEstimadaTotales")
     private int hsEstimadasTotales;
+
+    @ManyToOne
+    @JoinColumn(name = "incident_id", referencedColumnName = "id")
+    private Incident incident;
+
+
 }
